@@ -72,8 +72,6 @@ console.log('\t\t### p: Purple'.magenta);
 
 console.log('\x1b[36m%s\x1b[0m', '\t    GUESS MY COMBINATION !!');
 
-console.log(secret);
-
 const prompt = require('prompt-sync')();
 for (let i=0; i < 10 && black < 4; i++) {
     const input = prompt('');
