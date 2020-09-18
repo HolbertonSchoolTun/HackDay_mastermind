@@ -39,19 +39,19 @@ function black_count(a, b, c, d){
 }
 
 function white_count(a, b, c, d, blck){
-    if (secret[0] === a) {
+    if (secret.includes(a)) {
         white += 1;
     }
-    if (secret[0] === b) {
+    if (secret.includes(b)) {
         white += 1;
     }
-    if (secret[0] === c) {
+    if (secret.includes(c)) {
         white += 1;
     }
-    if (secret[0] == d) {
+    if (secret.includes(d)) {
         white += 1;
     }
-    return white - black + 1;
+    return white - black;
 }
 
 function playerVsBot(a, b, c, d) {
@@ -96,36 +96,3 @@ for (let i=0; i < 10 && black < 4; i++) {
     black = 0;
     white = 0;
 }
-
-function botVsPlayer(a, b, c, d) {
-    if (a === secret[0]) {
-        black += 1;
-    } else if (secret.includes(a)) {
-        white += 1;
-    }
-    if (b === secret[1]) {
-        black += 1;
-    } else if (secret.includes(b)) {
-        white += 1;
-    }
-    if (c === secret[2]) {
-        black += 1;
-    } else if (secret.includes(c)) {
-        white += 1;
-    }
-    if (d === secret[3]) {
-        black += 1;
-    } else if (secret.includes(d)) {
-        white += 1;
-    }
-}
-
-// function botVsPlayer(a, b, c, d) {
-    
-// }
-
-// func : pc VS player
-// player vs player
-
-
-// if 
