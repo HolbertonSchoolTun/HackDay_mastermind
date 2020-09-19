@@ -98,13 +98,16 @@ def start_game():
         for i in range(rows):
             pygame.draw.rect(screen,WHITE,(200,s,80,40))
             a = 220
-            if i == turn:
-                if len(m.result) != 0:
-                    for j in range(m.result[0]):
-                        pygame.draw.circle(screen, RED, (a, s+ 10), 5, 0)
-                    for k in range(m.result[1]):
-                        pygame.draw.circle(screen, GREEN, (a, s+ 10), 5, 0)
-                        a += 10
+            if len(m.result) != 0:
+                for j in range(m.result[0]):
+                    pygame.draw.circle(screen, YELLOW, (a, s+ 10), 5, 0)
+                    a += 10
+                for k in range(m.result[1]):
+                    pygame.draw.circle(screen, GREEN, (a, s+ 10), 5, 0)
+                    a += 10
+                for p in range(sum(m.result), 4):
+                    pygame.draw.circle(screen, RED, (a, s+ 10), 5, 0)
+                    a += 10
             s -= 45
         clock.tick(120)
         pygame.display.flip()
