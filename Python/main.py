@@ -46,7 +46,7 @@ def start_game():
     font2 = pygame.font.Font('freesansbold.ttf', 22)
     font3 = pygame.font.Font('freesansbold.ttf', 14)
 
-    image = pygame.image.load(r'/home/achref/Desktop/azer/HackDay_mastermind/Python/unnamed-2.png')
+    image = pygame.image.load(r'unnamed-2.png')
     image = pygame.transform.scale(image, (100, 100))
 
     clock = pygame.time.Clock()
@@ -84,7 +84,6 @@ def start_game():
                     COLOR = COLOR % 7
                     grid[row][column] = COLOR
                     result[column] = COLOR
-            print(turn)
             if SinglePlayer.result == [0, 4] or turn == -1:
                 start_game()
         screen.fill(BLACK)
