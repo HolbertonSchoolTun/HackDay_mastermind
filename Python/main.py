@@ -53,6 +53,7 @@ def start_game():
     m = SinglePlayer()
 
     while not done:
+
         for event in pygame.event.get(): 
             if event.type == pygame.QUIT:  
                 done = True 
@@ -65,13 +66,15 @@ def start_game():
                     COLOR = COLOR%7
                     grid[row][column] = COLOR
                     result[column] = COLOR
-                elif column < 10 and row == 12 and column > 4:
-                    print('ok')
+                elif column < 6 and row == 12 and column > 4:
                     if 0 not in result:
                         turn -= 1
                         m.Player_Input(result)
                         m.compare()
                         result = [0,0,0,0]
+                elif column < 10 and row == 12 and column > 6:
+                    start_game()
+
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
                 pos = pygame.mouse.get_pos()
                 column = pos[0] // (WIDTH + MARGIN)
@@ -81,6 +84,9 @@ def start_game():
                     COLOR = COLOR % 7
                     grid[row][column] = COLOR
                     result[column] = COLOR
+            print(turn)
+            if SinglePlayer.result == [0, 4] or turn == -1:
+                start_game()
         screen.fill(BLACK)
         for row in range(rows):
             for column in range(columns):
@@ -121,6 +127,8 @@ def start_game():
         pygame.draw.circle(screen, GREEN, (300, 350), 5, 0)
         text8 = font3.render("wrong color", True, WHITE)
         pygame.draw.circle(screen, RED, (300, 380), 5, 0)
+        pygame.draw.rect(screen,(255,90,120),(290,550,150,40))
+        text9 = font2.render("restart", True, WHITE)
 
 
         textRect = text.get_rect()
@@ -131,6 +139,7 @@ def start_game():
         textRect6 = text6.get_rect()
         textRect7 = text7.get_rect()
         textRect8 = text8.get_rect()
+        textRect9 = text9.get_rect()
 
         textRect.center = (100 ,570)
         textRect2.center = (240 ,570)
@@ -140,6 +149,7 @@ def start_game():
         textRect6.center = (365 ,320)
         textRect7.center = (365 ,350)
         textRect8.center = (365 ,380)
+        textRect9.center = (365 ,570)
 
 
         screen.blit(text, textRect)
@@ -150,6 +160,7 @@ def start_game():
         screen.blit(text6, textRect6)
         screen.blit(text7, textRect7)
         screen.blit(text8, textRect8)
+        screen.blit(text9, textRect9)
 
         screen.blit(image, (320, 30)) 
         pygame.display.update()
