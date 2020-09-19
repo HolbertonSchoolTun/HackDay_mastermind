@@ -31,23 +31,24 @@ def start_game():
 
     grid = []
     for row in range(rows):
-
         grid.append([])
         for column in range(columns):
             grid[row].append(0)
     
     pygame.init()
-    
-    WINDOW_SIZE = [300, 600]
+    WINDOW_SIZE = [285, 600]
     screen = pygame.display.set_mode(WINDOW_SIZE)
     
     pygame.display.set_caption("Mastermind")
     
     done = False
-    
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    font2 = pygame.font.Font('freesansbold.ttf', 22)
+
+
     clock = pygame.time.Clock()
     m = SinglePlayer()
-   
+
     while not done:
         for event in pygame.event.get(): 
             if event.type == pygame.QUIT:  
@@ -62,24 +63,20 @@ def start_game():
                     grid[row][column] = COLOR
                     result[column] = COLOR
                 elif column < 10 and row == 12 and column > 4:
-                    turn -= 1
-                    m.Player_Input(result)
-                    m.compare()
-                    print(m.objective)
-                print("Click ", pos, "Grid coordinates: ", row, column)
+                    if 0 not in result:
+                        turn -= 1
+                        m.Player_Input(result)
+                        m.compare()
+                        result = [0,0,0,0]
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
                 pos = pygame.mouse.get_pos()
                 column = pos[0] // (WIDTH + MARGIN)
                 row = pos[1] // (HEIGHT + MARGIN)
                 if turn == row:
-
                     COLOR -= 1
                     COLOR = COLOR % 7
                     grid[row][column] = COLOR
                     result[column] = COLOR
-                print("Click ", pos, "Grid coordinates: ", row, column)
-
-    
         screen.fill(BLACK)
         for row in range(rows):
             for column in range(columns):
@@ -93,7 +90,7 @@ def start_game():
                                     WIDTH,
                                     HEIGHT])
         s = 500
-        pygame.draw.rect(screen,RED,(200,550,80,40))
+        pygame.draw.rect(screen,(255,90,120),(200,550,80,40))
 
         for i in range(rows):
             pygame.draw.rect(screen,WHITE,(200,s,80,40))
@@ -109,7 +106,20 @@ def start_game():
                     pygame.draw.circle(screen, RED, (a, s+ 10), 5, 0)
                     a += 10
             s -= 45
-        clock.tick(120)
+        text = font.render("turn :{}".format(-(turn - 12)), True, WHITE)
+        text2 = font2.render("Check", True, WHITE)
+
+        textRect2 = text2.get_rect()
+        textRect = text.get_rect()
+
+        textRect.center = (100 ,570)
+        textRect2.center = (240 ,570)
+
+
+        screen.blit(text, textRect)
+        screen.blit(text2, textRect2)
+        pygame.display.update()
         pygame.display.flip()
+
 
     pygame.quit()

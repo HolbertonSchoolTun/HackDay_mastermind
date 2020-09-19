@@ -23,7 +23,7 @@ class Game():
     def Play_Mode(mode, value):
         pass
 
-    menu = pygame_menu.Menu(550, 400, 'Master Mind Game',
+    menu = pygame_menu.Menu(550, 400, 'MasterMind Game',
                         theme=pygame_menu.themes.THEME_SOLARIZED)
 
     menu.add_text_input('Enter Your Name :', default='Master')
