@@ -45,7 +45,7 @@ def start_game():
     pygame.init()
     
     # Set the HEIGHT and WIDTH of the screen
-    WINDOW_SIZE = [300, 550]
+    WINDOW_SIZE = [300, 600]
     screen = pygame.display.set_mode(WINDOW_SIZE)
     
     # Set title of screen
@@ -74,14 +74,14 @@ def start_game():
                     COLOR = COLOR%7
                     grid[row][column] = COLOR
                     result[column] = COLOR
-                elif column < 10 and row == 11 and column > 4:
+                elif column < 10 and row == 12 and column > 4:
                     turn -= 1
                     m.Player_Input(result)
                     m.compare()
-                    print(result)
-                    print(m.playerinput)
+                    #print(result)
+                    #print(m.playerinput)
                     print(m.objective)
-                print(COLOR)
+                #print(COLOR)
                 print("Click ", pos, "Grid coordinates: ", row, column)
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
                 # User clicks the mouse. Get the position
@@ -96,7 +96,7 @@ def start_game():
                     COLOR = COLOR % 7
                     grid[row][column] = COLOR
                     result[column] = COLOR
-                print(COLOR)
+                #print(COLOR)
                 print("Click ", pos, "Grid coordinates: ", row, column)
 
     
@@ -115,18 +115,18 @@ def start_game():
                                     (MARGIN + HEIGHT) * row + MARGIN,
                                     WIDTH,
                                     HEIGHT])
-        s = 455
-        pygame.draw.rect(screen,RED,(200,500,80,40))
+        s = 500
+        pygame.draw.rect(screen,RED,(200,550,80,40))
 
         for i in range(rows):
             pygame.draw.rect(screen,WHITE,(200,s,80,40))
-            a = 230
+            a = 220
             if i == turn:
                 if len(m.result) != 0:
                     for j in range(m.result[0]):
-                        pygame.draw.circle(screen, BLUE, (a, s+ 10), 5, 0)
-                    for k in range(m.result[1]):
                         pygame.draw.circle(screen, RED, (a, s+ 10), 5, 0)
+                    for k in range(m.result[1]):
+                        pygame.draw.circle(screen, GREEN, (a, s+ 10), 5, 0)
                         a += 10
             s -= 45
         #print(b)
